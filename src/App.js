@@ -1,67 +1,18 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import Home from "./components/Home";
+import Todo from "./components/Todo";
 
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      input: "",
-      todos: [
-        {
-          id: 0,
-          text: "Sholat Subuh"
-        },
-        {
-          id: 1,
-          text: "Sarapan"
-        }
-      ]
-    };
-  }
-
-  handleTodoInput = event => {
-    this.setState({ input: event.target.value });
-  };
-
-  handleTodoSubmit = event => {
-    event.preventDefault();
-    console.log("todo submited", this.state.input);
-
-    const newTodo = {
-      id: this.state.todos.length,
-      text: this.state.input
-    };
-
-    const newTodos = this.state.todos.concat(newTodo);
-
-    this.setState({
-      input: "",
-      todos: newTodos
-    });
-  };
-
   render() {
     return (
-      <div>
-        <h1>Todo React</h1>
-        <form onSubmit={this.handleTodoSubmit}>
-          <input
-            type="text"
-            onChange={this.handleTodoInput}
-            placeholder="what will you do ?"
-          />
-          <input type="submit" value="Add Todo" />
-        </form>
-        <ul>
-          {this.state.todos.map((todo, index) => {
-            return (
-              <li key={index}>
-                {todo.id}: {todo.text}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/todo" exact component={Todo} />
+        </Switch>
+      </Router>
     );
   }
 }
