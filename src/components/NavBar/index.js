@@ -14,20 +14,22 @@ class Navbar extends Component {
     return (
       <Segment inverted>
         <Menu inverted pointing secondary>
-          <Menu.Item
-            as={Link}
-            to="/"
-            name="Home"
-            active={activeItem === "/"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            as={Link}
-            to="/todo"
-            name="todo app"
-            active={activeItem === "/todo"}
-            onClick={this.handleItemClick}
-          />
+          <Menu.Menu position="right">
+            <Menu.Item
+              as={Link}
+              to="/"
+              name="Home"
+              active={activeItem === "/"}
+              onClick={this.handleItemClick}
+            />
+            <Menu.Item
+              as={Link}
+              to="/todo"
+              name="todo app"
+              active={activeItem === "/todo"}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu>
         </Menu>
       </Segment>
     );

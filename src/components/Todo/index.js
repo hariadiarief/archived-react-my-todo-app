@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Input, Table, Button } from "semantic-ui-react";
 import Page from "../Page";
 
 class Todo extends Component {
@@ -42,30 +42,61 @@ class Todo extends Component {
     });
   };
 
+  removeTodo = indexToRemove => {
+    const newTodos = this.state.todos.filter((todo, index) => {
+      return index !== indexToRemove;
+    });
+
+    this.setState({
+      todos: newTodos
+    });
+  };
+
   render() {
     return (
-        <Page>
-          {/* <NavBar /> */}
+      <Page>
+        <h1>Todo React</h1>
 
-          <h1>Todo React</h1>
-          <form onSubmit={this.handleTodoSubmit}>
-            <input
-              type="text"
-              onChange={this.handleTodoInput}
-              placeholder="what will you do ?"
-            />
-            <input type="submit" value="Add Todo" />
-          </form>
-          <ul>
+        <form onSubmit={this.handleTodoSubmit}>
+          <Input
+            action={{
+              color: "teal",
+              labelPosition: "right",
+              icon: "add circle",
+              size: "big",
+              content: "Add Todo"
+            }}
+            value={this.state.input}
+            onChange={this.handleTodoInput}
+            placeholder="what will you do ?"
+            size="huge"
+            fluid
+          />
+        </form>
+        <Table basic="very">
+          <Table.Body>
             {this.state.todos.map((todo, index) => {
               return (
-                <li key={index}>
-                  {todo.id}: {todo.text}
-                </li>
+                <Table.Row>
+                  <Table.Cell>
+                    {todo.id}: {todo.text}
+                  </Table.Cell>
+                  <Table.Cell textAlign="right">
+                    <Button
+                      negative
+                      type="button"
+                      value="Remove"
+                      onClick={() => this.removeTodo(index)}
+                    >
+                      Remove
+                    </Button>
+                  </Table.Cell>
+                </Table.Row>
               );
             })}
-          </ul>
-        </Page>
+          </Table.Body>
+        </Table>
+      </Page>
     );
   }
 }
