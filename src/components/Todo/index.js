@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Button, Divider } from "semantic-ui-react";
+import { Input, Button, Divider, Segment } from "semantic-ui-react";
 import Page from "../Page";
 
 class Todo extends Component {
@@ -46,40 +46,42 @@ class Todo extends Component {
   render() {
     return (
       <Page>
-        <h1>Todo React</h1>
+        <Segment>
+          <h1>Todo React</h1>
 
-        <form onSubmit={this.handleTodoSubmit}>
-          <Input
-            action={{
-              icon: "add circle",
-              size: "huge"
-            }}
-            value={this.state.input}
-            onChange={this.handleTodoInput}
-            placeholder="what will you do ?"
-            fluid
-          />
-        </form>
+          <form onSubmit={this.handleTodoSubmit}>
+            <Input
+              action={{
+                icon: "add circle",
+                size: "huge"
+              }}
+              value={this.state.input}
+              onChange={this.handleTodoInput}
+              placeholder="what will you do ?"
+              fluid
+            />
+          </form>
 
-        {this.state.todos.map((todo, index) => {
-          return (
-            <ul>
-              <li key={index}>
-                {todo.text}
-                <Button
-                  negative
-                  type="button"
-                  icon="minus square"
-                  value="Remove"
-                  floated="right"
-                  size="tiny"
-                  onClick={() => this.removeTodo(index)}
-                />
-                <Divider />
-              </li>
-            </ul>
-          );
-        })}
+          {this.state.todos.map((todo, index) => {
+            return (
+              <ul>
+                <li key={index}>
+                  {todo.text}
+                  <Button
+                    negative
+                    type="button"
+                    icon="minus square"
+                    value="Remove"
+                    floated="right"
+                    size="tiny"
+                    onClick={() => this.removeTodo(index)}
+                  />
+                  <Divider />
+                </li>
+              </ul>
+            );
+          })}
+        </Segment>
       </Page>
     );
   }
