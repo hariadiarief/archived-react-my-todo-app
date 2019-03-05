@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Table, Button } from "semantic-ui-react";
+import { Input, Button, Divider } from "semantic-ui-react";
 import Page from "../Page";
 
 class Todo extends Component {
@@ -51,10 +51,8 @@ class Todo extends Component {
         <form onSubmit={this.handleTodoSubmit}>
           <Input
             action={{
-              color: "teal",
-              labelPosition: "right",
               icon: "add circle",
-              content: "Add Todo"
+              size: "huge"
             }}
             value={this.state.input}
             onChange={this.handleTodoInput}
@@ -62,27 +60,26 @@ class Todo extends Component {
             fluid
           />
         </form>
-        <Table basic="very">
-          <Table.Body>
-            {this.state.todos.map((todo, index) => {
-              return (
-                <Table.Row>
-                  <Table.Cell>{todo.text}</Table.Cell>
-                  <Table.Cell textAlign="right">
-                    <Button
-                      negative
-                      type="button"
-                      value="Remove"
-                      onClick={() => this.removeTodo(index)}
-                    >
-                      Remove
-                    </Button>
-                  </Table.Cell>
-                </Table.Row>
-              );
-            })}
-          </Table.Body>
-        </Table>
+
+        {this.state.todos.map((todo, index) => {
+          return (
+            <ul>
+              <li key={index}>
+                {todo.text}
+                <Button
+                  negative
+                  type="button"
+                  icon="minus square"
+                  value="Remove"
+                  floated="right"
+                  size="tiny"
+                  onClick={() => this.removeTodo(index)}
+                />
+                <Divider />
+              </li>
+            </ul>
+          );
+        })}
       </Page>
     );
   }
