@@ -8,16 +8,7 @@ class Todo extends Component {
 
     this.state = {
       input: "",
-      todos: [
-        {
-          id: 0,
-          text: "Sholat Subuh"
-        },
-        {
-          id: 1,
-          text: "Sarapan"
-        }
-      ]
+      todos: []
     };
   }
 
@@ -63,13 +54,11 @@ class Todo extends Component {
               color: "teal",
               labelPosition: "right",
               icon: "add circle",
-              size: "big",
               content: "Add Todo"
             }}
             value={this.state.input}
             onChange={this.handleTodoInput}
             placeholder="what will you do ?"
-            size="huge"
             fluid
           />
         </form>
@@ -78,9 +67,7 @@ class Todo extends Component {
             {this.state.todos.map((todo, index) => {
               return (
                 <Table.Row>
-                  <Table.Cell>
-                    {todo.id}: {todo.text}
-                  </Table.Cell>
+                  <Table.Cell>{todo.text}</Table.Cell>
                   <Table.Cell textAlign="right">
                     <Button
                       negative
