@@ -21,25 +21,29 @@ class About extends React.Component {
       <Page>
         <Segment className="gradientBackground">
           <Particles
+            className="partikel"
             params={{
               particles: {
                 number: {
-                  value: 150,
+                  value: 250,
                   density: {
                     enable: true,
-                    value_area: 800
+                    value_area: 1300
                   }
                 }
               }
             }}
           />
-          <Typed
-            className="text-marquee"
-            strings={["WEB APPS", "GAME APPS", "IOS APPS"]}
-            typeSpeed={100}
-            backSpeed={50}
-            loop
-          />
+          <div className="containerAbout">
+            <div className="contentAbout">
+              <Typed
+                strings={["Masagus", "Hariadi", "Arief"]}
+                typeSpeed={100}
+                backSpeed={50}
+                loop
+              />
+            </div>
+          </div>
         </Segment>
       </Page>
     );
